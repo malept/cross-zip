@@ -134,7 +134,7 @@ function getUnzipArgs (inPath, outPath) {
     return [
       '-nologo',
       '-noprofile',
-      '-command', '& { param([String]$myInPath, [String]$myOutPath); Add-Type -A "System.IO.Compression.FileSystem"; [IO.Compression.ZipFile]::ExtractToDirectory($myInPath, $myOutPath); }',
+      '-command', '& { param([String]$myInPath, [String]$myOutPath); Add-Type -A "System.IO.Compression.FileSystem"; [IO.Compression.ZipFile]::ExtractToDirectory($myInPath, $myOutPath); exit !$? }',
       '-myInPath', inPath,
       '-myOutPath', outPath
     ]

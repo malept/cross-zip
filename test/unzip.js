@@ -42,7 +42,7 @@ test('unzip', function (t) {
 })
 
 test('unzip from a folder with a space in it', function (t) {
-  t.plan(3)
+  t.plan(4)
 
   var zipSpacePath = path.join(tmpPath, 'folder space', path.basename(fileZipPath))
   mkdirp.sync(path.dirname(zipSpacePath))
@@ -55,6 +55,7 @@ test('unzip from a folder with a space in it', function (t) {
     zip.unzip(zipSpacePath, tmpPath, function (err) {
       t.error(err)
 
+      t.ok(fs.existsSync(tmpFilePath), 'extracted file should exist')
       var tmpFile = fs.readFileSync(tmpFilePath)
       var file = fs.readFileSync(filePath)
 
